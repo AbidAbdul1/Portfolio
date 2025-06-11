@@ -1,0 +1,3 @@
+@echo off
+echo Starting Certificate Server...
+node index.js 

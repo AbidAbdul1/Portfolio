@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Certificate API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .certificate { border: 1px solid #ccc; padding: 10px; margin: 10px 0; position: relative; }
+        button { padding: 10px; margin: 5px; }
+        #result { margin-top: 20px; }
+        .certificate-image { max-width: 300px; margin: 10px 0; }
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .delete-btn:hover {
+            background: #cc0000;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Certificate API Test</h1>
+        
+        <h2>Add Certificate</h2>
+        <div class="form-group">
+            <label for="title">Certificate Title:</label>
+            <input type="text" id="title" required>
+        </div>
+        <div class="form-group">
+            <label for="issuer">Issuing Organization:</label>
+            <input type="text" id="issuer" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Issue Date:</label>
+            <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="imageInput">Certificate Image:</label>
+            <input type="file" id="imageInput" accept="image/*" required>
+        </div>
+        <button onclick="addCertificate()">Add Certificate</button>
+        
+        <h2>Get All Certificates</h2>
+        <button onclick="getCertificates()">Fetch Certificates</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function addCertificate() {
+            try {
+                const title = document.getElementById('title').value;
+                const issuer = document.getElementById('issuer').value;
+                const date = document.getElementById('date').value;
+                const description = document.getElementById('description').value;
+                const imageInput = document.getElementById('imageInput');
+                const file = imageInput.files[0];
+                
+                if (!title || !issuer || !date || !file) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+
+                // Convert image to base64
+                const base64Image = await new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.readAsDataURL(file);
+                });
+
+                const response = await fetch('http://localhost:5000/api/certificates', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        issuer: issuer,
+                        date: date,
+                        image: base64Image,
+                        short_description: description
+                    })
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Clear the form
+                    document.getElementById('title').value = '';
+                    document.getElementById('issuer').value = '';
+                    document.getElementById('date').value = '';
+                    document.getElementById('description').value = '';
+                    document.getElementById('imageInput').value = '';
+                    
+                    // Show success message
+                    alert('Certificate added successfully!');
+                    
+                    // Refresh the certificates list
+                    getCertificates();
+                } else {
+                    alert('Error adding certificate: ' + data.message);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function getCertificates() {
+            try {
+                const response = await fetch('http://localhost:5000/api/certificates');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const certificatesHtml = data.certificates.map(cert => `
+                        <div class="certificate">
+                            <button class="delete-btn" onclick="deleteCertificate(${cert.id})">Delete</button>
+                            <h3>${cert.title}</h3>
+                            <p>Issuer: ${cert.issuer}</p>
+                            <p>Date: ${cert.date}</p>
+                            <p>Description: ${cert.short_description || 'No description'}</p>
+                            <img src="${cert.image}" class="certificate-image" alt="Certificate Image">
+                        </div>
+                    `).join('');
+                    
+                    document.getElementById('result').innerHTML = certificatesHtml;
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = 
+                    `<pre>Error: ${error.message}</pre>`;
+            }
+        }
+
+        async function deleteCertificate(id) {
+            if (!confirm('Are you sure you want to delete this certificate?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/certificates/${id}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Refresh the certificates list
+                    getCertificates();
+                } else {
+                    alert('Error deleting certificate: ' + data.message);
+                }
+            } catch (error) {
+                alert('Error deleting certificate: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html> 
