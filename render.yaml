@@ -1,5 +1,16 @@
 services:
   - type: web
+    name: abid-ai-portfolio-frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run preview
+    envVars:
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /
+    autoDeploy: true
+
+  - type: web
     name: abid-ai-portfolio-backend
     env: node
     buildCommand: cd server && npm install
@@ -8,7 +19,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: CORS_ORIGIN
-        value: https://your-frontend-domain.onrender.com  # Update this with your frontend URL
+        value: https://abid-ai-portfolio-frontend.onrender.com
       - key: MAX_FILE_SIZE
         value: "5242880"
       - key: ALLOWED_FILE_TYPES
