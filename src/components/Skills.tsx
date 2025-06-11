@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 
 const Skills = () => {
@@ -46,7 +45,7 @@ const Skills = () => {
   }, []);
 
   return (
-    <section id="skills" className="py-20 px-4 relative overflow-hidden">
+    <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 w-20 h-20 bg-cyan-500/10 rounded-full animate-pulse"></div>
@@ -55,15 +54,15 @@ const Skills = () => {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-white mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
           Technical Arsenal
         </h2>
-        <p className="text-center text-gray-400 mb-16 text-lg">
+        <p className="text-center text-gray-400 mb-12 sm:mb-16 text-base sm:text-lg">
           Crafting innovative solutions with cutting-edge technologies
         </p>
         
         {/* Interactive skill grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {categories.map((category, categoryIndex) => (
             <div 
               key={category} 
@@ -71,9 +70,9 @@ const Skills = () => {
               style={{ animationDelay: `${categoryIndex * 100}ms` }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative bg-gray-800/60 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 transform hover:scale-105">
-                <h3 className="text-xl font-bold text-cyan-400 mb-6 flex items-center gap-2">
-                  <span className="text-2xl">
+              <div className="relative bg-gray-800/60 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 transform hover:scale-105">
+                <h3 className="text-lg sm:text-xl font-bold text-cyan-400 mb-4 sm:mb-6 flex items-center gap-2">
+                  <span className="text-xl sm:text-2xl">
                     {category === 'Programming' && '💻'}
                     {category === 'Mobile' && '📱'}
                     {category === 'Web' && '🌐'}
@@ -83,7 +82,7 @@ const Skills = () => {
                   </span>
                   {category}
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {skills
                     .filter(skill => skill.category === category)
                     .map((skill, index) => {
@@ -96,16 +95,16 @@ const Skills = () => {
                           ref={el => skillRefs.current[skillIndex] = el}
                           className="group/skill relative overflow-hidden"
                         >
-                          <div className="flex justify-between items-center mb-2">
-                            <span className="text-white font-medium flex items-center gap-2">
-                              <span className="text-lg">{skill.icon}</span>
+                          <div className="flex justify-between items-center mb-1 sm:mb-2">
+                            <span className="text-white font-medium flex items-center gap-2 text-sm sm:text-base">
+                              <span className="text-base sm:text-lg">{skill.icon}</span>
                               {skill.name}
                             </span>
-                            <span className="text-cyan-400 text-sm font-bold">
+                            <span className="text-cyan-400 text-xs sm:text-sm font-bold">
                               {isVisible ? skill.level : 0}%
                             </span>
                           </div>
-                          <div className="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden">
+                          <div className="w-full bg-gray-700/50 rounded-full h-1.5 sm:h-2 overflow-hidden">
                             <div 
                               className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000 ease-out relative`}
                               style={{ 
@@ -126,16 +125,16 @@ const Skills = () => {
         </div>
         
         {/* Floating tech constellation */}
-        <div className="relative h-40 overflow-hidden rounded-xl bg-gray-800/30 backdrop-blur-sm border border-gray-700/50">
+        <div className="relative h-32 sm:h-40 overflow-hidden rounded-xl bg-gray-800/30 backdrop-blur-sm border border-gray-700/50">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex animate-scroll space-x-16">
+            <div className="flex animate-scroll space-x-12 sm:space-x-16">
               {[...skills, ...skills].map((skill, index) => (
                 <div
                   key={`${skill.name}-${index}`}
                   className="flex-shrink-0 group cursor-pointer"
                 >
-                  <div className="w-20 h-20 bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-2xl flex flex-col items-center justify-center border border-gray-600 hover:border-cyan-500 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25">
-                    <span className="text-2xl mb-1">{skill.icon}</span>
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-2xl flex flex-col items-center justify-center border border-gray-600 hover:border-cyan-500 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25">
+                    <span className="text-xl sm:text-2xl mb-1">{skill.icon}</span>
                     <span className="text-xs font-bold text-white text-center px-1">
                       {skill.name.split(' ')[0]}
                     </span>

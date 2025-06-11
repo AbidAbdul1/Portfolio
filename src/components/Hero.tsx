@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Mail, ArrowDown, Download } from 'lucide-react';
 
@@ -60,10 +59,10 @@ const Hero = () => {
         <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-pink-400 rounded-full animate-pulse opacity-50 delay-500"></div>
       </div>
 
-      <div className="container mx-auto px-4 z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 z-10 py-8 sm:py-12 flex flex-col justify-center items-center h-full">
+        <div className="grid grid-cols-2 gap-x-8 sm:gap-x-12 lg:gap-x-20 items-center w-full">
           {/* Left side - Interactive Profile image */}
-          <div className="flex justify-center lg:justify-end order-2 lg:order-1">
+          <div className="flex justify-start">
             <div className="relative group">
               {/* Glowing ring effect */}
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500 animate-pulse"></div>
@@ -71,7 +70,7 @@ const Hero = () => {
               {/* Image container with cursor following */}
               <div 
                 ref={imageRef}
-                className="relative w-80 h-80 lg:w-96 lg:h-96 transition-transform duration-200 ease-out"
+                className="relative w-full max-w-[280px] sm:max-w-[350px] md:max-w-xs lg:max-w-96 aspect-square transition-transform duration-200 ease-out"
                 style={{
                   transform: `perspective(1000px) rotateX(${mousePosition.y * 0.1}deg) rotateY(${mousePosition.x * 0.1}deg) translateX(${mousePosition.x * 0.02}px) translateY(${mousePosition.y * 0.02}px)`
                 }}
@@ -92,13 +91,13 @@ const Hero = () => {
                 ></div>
                 
                 {/* Tech stack floating badges with enhanced animation */}
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-bounce">
+                <div className="absolute -top-2 -right-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-1.5 py-0.5 rounded-full text-[0.4rem] font-semibold shadow-lg animate-bounce">
                   AI
                 </div>
-                <div className="absolute bottom-8 -left-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-bounce delay-300">
+                <div className="absolute bottom-2 -left-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-1.5 py-0.5 rounded-full text-[0.4rem] font-semibold shadow-lg animate-bounce delay-300">
                   Web Dev
                 </div>
-                <div className="absolute top-1/2 -right-8 bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg animate-bounce delay-700">
+                <div className="absolute top-1/2 -right-2 bg-gradient-to-r from-pink-500 to-red-500 text-white px-1.5 py-0.5 rounded-full text-[0.4rem] font-semibold shadow-lg animate-bounce delay-700">
                   Security
                 </div>
               </div>
@@ -106,13 +105,13 @@ const Hero = () => {
           </div>
 
           {/* Right side - Content */}
-          <div className="text-center lg:text-left order-1 lg:order-2 space-y-8">
+          <div className="text-left space-y-6 sm:space-y-8">
             <div className="space-y-4">
               <div className="inline-block">
-                <span className="text-cyan-400 text-lg font-medium tracking-wider uppercase">Hello, I'm</span>
+                <span className="text-cyan-400 text-base sm:text-lg lg:text-xl font-medium tracking-wider uppercase">Hello, I'm</span>
               </div>
               
-              <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+              <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold text-white leading-tight">
                 <span className="bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent">
                   Abdul
                 </span>
@@ -122,59 +121,59 @@ const Hero = () => {
                 </span>
               </h1>
               
-              <div className="text-2xl lg:text-3xl text-gray-300 font-light h-12 flex items-center justify-center lg:justify-start">
-                <span className="inline-block min-w-0">
+              <div className="text-lg sm:text-2xl lg:text-4xl text-gray-300 font-light min-h-[2rem] sm:min-h-[3rem] flex items-center justify-start">
+                <span className="inline-block">
                   {currentText}
                   <span className="animate-pulse text-cyan-400">|</span>
                 </span>
               </div>
             </div>
             
-            <p className="text-lg text-gray-400 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-xl leading-normal">
               Passionate about building innovative solutions that merge Artificial Intelligence, 
               Cybersecurity, and Web Development. Turning complex problems into intelligent applications.
             </p>
             
-            <div className="flex justify-center lg:justify-start space-x-6">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-start">
               <a 
                 href="https://github.com/AbidAbdul1" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group p-4 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25"
+                className="group p-2 sm:p-3 bg-gray-800/50 backdrop-blur-sm rounded-full border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/25"
               >
-                <Github size={24} className="text-white group-hover:text-cyan-400 transition-colors" />
+                <Github className="w-6 h-6 sm:w-8 h-8 text-white group-hover:text-cyan-400 transition-colors" />
               </a>
               <a 
                 href="https://linkedin.com/in/abdul-abid-cse" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group p-4 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25"
+                className="group p-2 sm:p-3 bg-gray-800/50 backdrop-blur-sm rounded-full border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25"
               >
-                <Linkedin size={24} className="text-white group-hover:text-blue-400 transition-colors" />
+                <Linkedin className="w-6 h-6 sm:w-8 h-8 text-white group-hover:text-blue-400 transition-colors" />
               </a>
               <a 
                 href="mailto:abid45981@gmail.com"
-                className="group p-4 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-pink-500/25"
+                className="group p-2 sm:p-3 bg-gray-800/50 backdrop-blur-sm rounded-full border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-pink-500/25"
               >
-                <Mail size={24} className="text-white group-hover:text-pink-400 transition-colors" />
+                <Mail className="w-6 h-6 sm:w-8 h-8 text-white group-hover:text-pink-400 transition-colors" />
               </a>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-start">
               <a 
                 href="https://drive.google.com/file/d/1A9VKuqoF-6jUyVFbvOgHL_UjgCxr0_p0/view?usp=sharing"
-                target="_blank"
+                target="_blank" 
                 rel="noopener noreferrer"
-                className="group bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
+                className="group bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 py-3 sm:px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 text-base sm:text-lg"
               >
-                <Download size={20} />
+                <Download className="w-5 h-5 sm:w-6 h-6" />
                 <span>Download Resume</span>
               </a>
               <a
-                href="https://www.linkedin.com/in/abid-abdul-cse/details/projects/"
-                target="_blank"
+                href="https://www.linkedin.com/in/abdul-abid-cse/details/projects/"
+                target="_blank" 
                 rel="noopener noreferrer"
-                className="group border-2 border-cyan-500/50 text-cyan-400 px-8 py-4 rounded-xl font-semibold hover:bg-cyan-500/10 transition-all duration-300 hover:scale-105"
+                className="group border-2 border-cyan-500/50 text-cyan-400 px-6 py-3 sm:px-8 py-4 rounded-xl font-semibold hover:bg-cyan-500/10 transition-all duration-300 hover:scale-105 text-base sm:text-lg"
               >
                 View Projects
               </a>
@@ -183,7 +182,7 @@ const Hero = () => {
         </div>
         
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ArrowDown size={32} className="text-gray-400" />
+          <ArrowDown size={24} className="text-gray-400" />
         </div>
       </div>
     </section>

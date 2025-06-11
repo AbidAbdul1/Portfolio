@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Github, ArrowRight, X, ExternalLink } from 'lucide-react';
 
@@ -63,7 +62,7 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 px-4 relative overflow-hidden">
+    <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 right-10 w-24 h-24 bg-cyan-500/5 rounded-full animate-pulse"></div>
@@ -71,60 +70,60 @@ const Projects = () => {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <p className="text-gray-400 text-lg mb-8">
+          <p className="text-center text-gray-400 mb-8 text-base sm:text-lg">
             Innovative solutions that merge AI, Web Development, and Cybersecurity
           </p>
           <a
             href="https://www.linkedin.com/in/abid-abdul-cse/details/projects/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 text-sm sm:text-base"
           >
-            <ExternalLink size={20} />
+            <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
             View All Projects on LinkedIn
           </a>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="group bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer hover:scale-105 animate-fade-in"
+              className="group bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer hover:scale-105 animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
               onClick={() => setSelectedProject(project)}
             >
-              <div className={`w-full h-32 bg-gradient-to-r ${project.color} rounded-lg mb-4 flex items-center justify-center relative overflow-hidden`}>
+              <div className={`w-full h-24 sm:h-32 md:h-40 bg-gradient-to-r ${project.color} rounded-lg mb-4 flex items-center justify-center relative overflow-hidden`}>
                 <div className="absolute inset-0 bg-white/10 animate-pulse"></div>
-                <span className="text-white font-bold text-lg relative z-10">{project.category}</span>
+                <span className="text-white font-bold text-base sm:text-lg relative z-10">{project.category}</span>
               </div>
               
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
                 {project.title}
               </h3>
               
-              <p className="text-gray-400 mb-4 line-clamp-2">
+              <p className="text-gray-400 mb-4 line-clamp-2 text-sm sm:text-base">
                 {project.shortDesc}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
                 {project.tech.slice(0, 3).map((tech) => (
-                  <span key={tech} className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">
+                  <span key={tech} className="text-xs bg-gray-700 text-gray-300 px-1.5 py-0.5 rounded sm:px-2 sm:py-1">
                     {tech}
                   </span>
                 ))}
                 {project.tech.length > 3 && (
-                  <span className="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">
+                  <span className="text-xs bg-gray-700 text-gray-300 px-1.5 py-0.5 rounded sm:px-2 sm:py-1">
                     +{project.tech.length - 3} more
                   </span>
                 )}
               </div>
               
-              <div className="flex items-center text-cyan-400 text-sm font-medium">
-                View Details <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+              <div className="flex items-center text-cyan-400 text-sm sm:text-base font-medium">
+                View Details <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
           ))}
@@ -133,49 +132,49 @@ const Projects = () => {
         {/* Project Modal */}
         {selectedProject && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
-            <div className="bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-white">{selectedProject.title}</h3>
+            <div className="bg-gray-800 rounded-xl max-w-xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+              <div className="p-4 sm:p-6">
+                <div className="flex justify-between items-start mb-3 sm:mb-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">{selectedProject.title}</h3>
                   <button
                     onClick={() => setSelectedProject(null)}
                     className="text-gray-400 hover:text-white transition-colors"
                   >
-                    <X size={24} />
+                    <X className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
                 </div>
                 
-                <div className={`w-full h-40 bg-gradient-to-r ${selectedProject.color} rounded-lg mb-6 flex items-center justify-center`}>
-                  <span className="text-white font-bold text-xl">{selectedProject.category}</span>
+                <div className={`w-full h-32 sm:h-40 bg-gradient-to-r ${selectedProject.color} rounded-lg mb-4 sm:mb-6 flex items-center justify-center`}>
+                  <span className="text-white font-bold text-base sm:text-xl">{selectedProject.category}</span>
                 </div>
                 
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                   {selectedProject.fullDesc}
                 </p>
                 
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-cyan-400 mb-3">Technologies Used</h4>
-                  <div className="flex flex-wrap gap-2">
+                <div className="mb-4 sm:mb-6">
+                  <h4 className="text-base sm:text-lg font-semibold text-cyan-400 mb-2 sm:mb-3">Technologies Used</h4>
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {selectedProject.tech.map((tech) => (
-                      <span key={tech} className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">
+                      <span key={tech} className="bg-gray-700 text-gray-300 px-2 py-0.5 rounded-full text-xs sm:text-sm">
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
                 
-                <div className="flex gap-4">
-                  <button className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
-                    <Github size={20} />
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <button className="flex items-center gap-1.5 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-3 py-1.5 rounded-lg transition-colors text-sm sm:text-base">
+                    <Github className="w-4 h-4 sm:w-5 sm:h-5" />
                     View Code
                   </button>
                   <a
                     href="https://www.linkedin.com/in/abid-abdul-cse/details/projects/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all"
+                    className="flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-3 py-1.5 rounded-lg hover:shadow-lg transition-all text-sm sm:text-base"
                   >
-                    <ExternalLink size={20} />
+                    <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
                     LinkedIn Projects
                   </a>
                 </div>
