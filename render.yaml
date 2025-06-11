@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: abid-ai-portfolio-backend
+    env: node
+    buildCommand: cd server && npm install
+    startCommand: cd server && node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: https://your-frontend-domain.onrender.com  # Update this with your frontend URL
+      - key: MAX_FILE_SIZE
+        value: "5242880"
+      - key: ALLOWED_FILE_TYPES
+        value: "image/jpeg,image/png,image/gif"
+    healthCheckPath: /health
+    autoDeploy: true 

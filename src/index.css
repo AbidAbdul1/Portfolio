@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -109,21 +108,105 @@ html {
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar {
+.custom-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
-  background: #1f2937;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #4b5563;
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.5);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.7);
+}
+
+/* Animation effects for Certifications */
+.certificate-item {
+  animation: certificate-entry 0.7s ease-out forwards;
+  transform-origin: center center; /* For potential future rotations */
+}
+
+.certificate-transition-effect {
+  /* This class will now be removed from JSX and handled by certificate-item directly */
+}
+
+.text-sticky {
+  position: sticky;
+  top: 20px; /* Adjust as needed */
+  align-self: flex-start;
+  height: fit-content;
+}
+
+.certificate-image-wrapper {
+  /* min-height: 400px; */
+}
+
+.animated-image {
+  animation: image-pop 0.6s ease-out 0.2s forwards; /* Apply pop animation with a slight delay */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@keyframes certificate-entry {
+  0% {
+    opacity: 0;
+    transform: translateX(100px) scale(0.9); /* More pronounced slide and slight zoom out */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes image-pop {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-image { /* Keep if needed for other sections, otherwise remove */
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+@keyframes certificate-fade-in-out { /* This one is now replaced by certificate-entry */
+  0% {
+    opacity: 0;
+    transform: translateX(50px); /* For a slide-in effect */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-slide-up { /* Remove if not used elsewhere */
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Glassmorphism effect */

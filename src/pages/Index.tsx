@@ -1,10 +1,10 @@
-
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Skills from '../components/Skills';
 import Projects from '../components/Projects';
 import Contact from '../components/Contact';
 import Chatbot from '../components/Chatbot';
+import Certifications from '../components/Certifications';
 
 const Index = () => {
   return (
@@ -13,6 +13,7 @@ const Index = () => {
       <About />
       <Skills />
       <Projects />
+      <Certifications />
       <Contact />
       <Chatbot />
     </div>
